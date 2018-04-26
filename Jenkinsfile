@@ -92,6 +92,7 @@ pipeline {
     }
     stage('Docker Stack Deploy'){
       steps{
+	sh "pwd"      
 	sh "docker login --username=$DOCKER_USER --password=$DOCKER_PASS"
         sh "docker stack deploy -c ${params.DOCKER_COMPOSE_FILENAME} ${params.DOCKER_STACK_NAME}"
       }
