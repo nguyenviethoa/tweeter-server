@@ -8,6 +8,8 @@ pipeline {
     string(name: 'LATEST_BUILD_TAG', defaultValue: 'build-latest', description: '')
     string(name: 'DOCKER_COMPOSE_FILENAME', defaultValue: 'docker-compose.yml', description: '')
     string(name: 'DOCKER_STACK_NAME', defaultValue: 'react_stack', description: '')
+    string(name: 'DOCKER_USER', defaultValue: 'nguyenviethoa', description: '')
+    string(name: 'DOCKER_PASS', defaultValue: 'Taptrung9', description: '')	  
     booleanParam(name: 'NPM_RUN_TEST', defaultValue: true, description: '')
     booleanParam(name: 'PUSH_DOCKER_IMAGES', defaultValue: true, description: '')
     booleanParam(name: 'DOCKER_STACK_RM', defaultValue: false, description: 'Remove previous stack.  This is required if you have updated any secrets or configs as these cannot be updated. ')
@@ -90,6 +92,7 @@ pipeline {
     }
     stage('Docker Stack Deploy'){
       steps{
+	sh "docker login --username=$DOCKER_USER --password=$DOCKER_PASS"
         sh "docker stack deploy -c ${params.DOCKER_COMPOSE_FILENAME} ${params.DOCKER_STACK_NAME}"
       }
     }
