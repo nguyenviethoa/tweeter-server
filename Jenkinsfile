@@ -51,7 +51,7 @@ pipeline {
       }
       steps{
 	 sh "pwd"
-         sh "npm tart"
+         sh "npm run start"
       }
     }
     stage('docker build'){
