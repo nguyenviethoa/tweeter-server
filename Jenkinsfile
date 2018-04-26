@@ -26,6 +26,11 @@ pipeline {
       }
     }
     stage('npm test'){
+      when{
+        expression {
+          return params.NPM_RUN_TEST
+        }
+      }	    
       agent {
           docker { 
 	     image 'node:latest'
