@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  tweeter_opentechiz:
+    image: nguyenviethoa/tweeter-opentechiz:build-latest
+    ports:
+      - 8099:4000
