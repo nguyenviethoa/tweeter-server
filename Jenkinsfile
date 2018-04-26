@@ -17,7 +17,6 @@ pipeline {
       agent {
           docker { 		  
 	     image 'node:latest'
-	     RUN apt-get update && apt-get install -y libltdl.so.7	  
 	     customWorkspace "$JENKINS_HOME/workspace/$BUILD_TAG"
 	  }
       }
