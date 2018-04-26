@@ -42,18 +42,6 @@ pipeline {
 	 sh "npm test -- --coverage"
       }
     }
-    stage('npm build'){
-      agent {
-          docker { 
-	     image 'node:latest'
-	     customWorkspace "$JENKINS_HOME/workspace/$BUILD_TAG"
-	  }
-      }
-      steps{
-	 sh "pwd"
-         sh "npm run start"
-      }
-    }
     stage('docker build'){
       environment {
         COMMIT_TAG = sh(returnStdout: true, script: 'git rev-parse HEAD').trim().take(7)
@@ -103,6 +91,8 @@ pipeline {
     stage('Docker Stack Deploy'){
       steps{
         sh "docker stack deploy -c ${params.DOCKER_COMPOSE_FILENAME} ${params.DOCKER_STACK_NAME}"
+	sh "PWD"
+	sh "npm run start"      
       }
     }
   }
