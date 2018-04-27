@@ -5,6 +5,8 @@ services:
     image: nguyenviethoa/tweeter-opentechiz:build-latest
     deploy:
       replicas: 1
+    working_dir: /app  
     ports:
       - 8099:4000
+    command: "npm start"  
     
