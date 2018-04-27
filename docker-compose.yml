@@ -3,5 +3,10 @@ version: '3.4'
 services:
   tweeter_opentechiz:
     image: nguyenviethoa/tweeter-opentechiz:build-latest
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
     ports:
       - 8099:4000
+    command: "npm start"
+    
